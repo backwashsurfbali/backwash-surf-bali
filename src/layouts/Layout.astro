@@ -8,11 +8,9 @@ interface Props {
     lang?: string; 
 }
 
-// 1. Deteksi otomatis dari URL: jika URL dimulai dengan '/id', maka id. Jika tidak, en.
 const pathname = Astro.url.pathname;
 const detectedLang = pathname.startsWith('/id') ? 'id' : 'en';
 
-// 2. Gunakan detectedLang sebagai default jika prop lang tidak diisi
 const { title, lang = detectedLang } = Astro.props;
 ---
 
@@ -28,7 +26,6 @@ const { title, lang = detectedLang } = Astro.props;
     </head>
     <body class="bg-white text-slate-900 font-bebas tracking-wide antialiased relative">
         
-        <!-- Header sekarang otomatis menerima lang yang benar ("id" atau "en") -->
         <Header lang={lang} />
 
         <slot />

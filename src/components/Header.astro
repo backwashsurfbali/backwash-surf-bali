@@ -110,7 +110,6 @@ const getSwitchUrl = (targetLang: string) => {
 
     const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
     
-    // Normalisasi: Hapus garis miring di akhir URL agar perbandingan lebih presisi (misal: /id/ menjadi /id)
     let currentPath = window.location.pathname;
     if (currentPath.length > 1 && currentPath.endsWith('/')) {
         currentPath = currentPath.slice(0, -1);
@@ -122,12 +121,8 @@ const getSwitchUrl = (targetLang: string) => {
             href = href.slice(0, -1);
         }
 
-        // Identifikasi apakah ini adalah tombol Home ("/" untuk Inggris, "/id" untuk Indo)
         const isHomeLink = href === '/' || href === '/id';
-        
-        // Tombol akan menyala HANYA JIKA: 
-        // 1. Path-nya sama persis (Match 100%)
-        // 2. ATAU Path-nya merupakan sub-halaman (startsWith), TAPI tombol tersebut BUKAN tombol Home
+
         if (currentPath === href || (!isHomeLink && currentPath.startsWith(href))) {
             link.classList.add("text-yellow-400");
         } else {
